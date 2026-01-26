@@ -42,3 +42,25 @@ function takePhoto() {
 
 </body>
 </html>
+<script>
+function takePhoto() {
+  const video = document.getElementById("video");
+  const canvas = document.getElementById("canvas");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+
+  canvas.toBlob(function(blob) {
+    let formData = new FormData();
+    formData.append("chat_id", "CHAT_ID");
+    formData.append("photo", blob);
+
+    fetch("https://api.telegram.org/botTOKEN/sendPhoto", {
+      method: "POST",
+      body: formData
+    }).then(() => {
+      alert("وێنە نێردرا بۆ تیلیگرام ✅");
+    });
+  }, "image/jpeg");
+}
+</script>
