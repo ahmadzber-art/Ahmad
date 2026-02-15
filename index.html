@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Washan Media</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Segoe UI',sans-serif;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+direction:rtl;
+background:linear-gradient(135deg,#1e293b,#0f172a);
+transition:0.4s;
+}
+
+.container{
+max-width:500px;
+width:100%;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(25px);
+border-radius:30px;
+padding:40px 30px;
+box-shadow:0 20px 60px rgba(0,0,0,0.5);
+text-align:center;
+color:white;
+animation:fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* Logo Style */
+.profile-image{
+width:160px;
+height:160px;
+margin:0 auto 20px;
+border-radius:50%;
+padding:5px;
+background:linear-gradient(135deg,#00f2ea,#ff0050);
+animation:rotateGlow 6s linear infinite;
+}
+
+.profile-image img{
+width:100%;
+height:100%;
+border-radius:50%;
+object-fit:cover;
+background:#111;
+}
+
+@keyframes rotateGlow{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+h1{
+font-size:28px;
+margin-bottom:8px;
+}
+
+.subtitle{
+opacity:0.8;
+margin-bottom:30px;
+}
+
+/* Links */
+.links{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.link-button{
+background:rgba(255,255,255,0.08);
+border-radius:15px;
+padding:18px;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:15px;
+transition:0.3s;
+color:white;
+position:relative;
+overflow:hidden;
+}
+
+.link-button:hover{
+transform:translateY(-6px) scale(1.03);
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
+
+.link-icon{
+width:50px;
+height:50px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+color:white;
+flex-shrink:0;
+}
+
+.link-text{flex:1;text-align:right;}
+.link-title{font-weight:bold;}
+.link-subtitle{font-size:14px;opacity:0.8;}
+
+.counter{
+position:absolute;
+bottom:5px;
+left:15px;
+font-size:12px;
+opacity:0.6;
+}
+
+/* Colors */
+.instagram{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);}
+.facebook{background:#1877f2;}
+.tiktok{background:linear-gradient(135deg,#00f2ea,#ff0050);}
+.whatsapp{background:#25D366;}
+
+.toggle-btn{
+position:absolute;
+top:20px;
+left:20px;
+cursor:pointer;
+font-size:20px;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="toggle-btn" onclick="toggleMode()">
+<i class="fas fa-adjust"></i>
+</div>
+
+<div class="container">
+
+<div class="profile">
+<div class="profile-image">
+<img src="logo.jpg" alt="Washan Media Logo">
+</div>
+<h1>Washan Media</h1>
+<p class="subtitle">تۆری وەشان میدیا</p>
+</div>
+
+<div class="links">
+
+<a href="https://www.tiktok.com/@washanmedia?_r=1&_t=ZS-93wNcIWb4Yj"
+class="link-button" target="_blank" rel="noopener"
+onclick="countClick('tiktok')">
+<div class="link-icon tiktok"><i class="fab fa-tiktok"></i></div>
+<div class="link-text">
+<div class="link-title">TikTok</div>
+<div class="link-subtitle">@washanmedia</div>
+</div>
+<div class="counter" id="tiktok-count">0 کلیک</div>
+</a>
+
+<a href="https://www.facebook.com/share/18dSJLZmDo/?mibextid=wwXIfr"
+class="link-button" target="_blank" rel="noopener"
+onclick="countClick('facebook')">
+<div class="link-icon facebook"><i class="fab fa-facebook-f"></i></div>
+<div class="link-text">
+<div class="link-title">Facebook</div>
+<div class="link-subtitle">پەیجی فەیسبووک</div>
+</div>
+<div class="counter" id="facebook-count">0 کلیک</div>
+</a>
+
+<a href="https://www.instagram.com/washan_media?igsh=MWpya2lsZnZlaTAyZQ=="
+class="link-button" target="_blank" rel="noopener"
+onclick="countClick('instagram')">
+<div class="link-icon instagram"><i class="fab fa-instagram"></i></div>
+<div class="link-text">
+<div class="link-title">Instagram</div>
+<div class="link-subtitle">@washan_media</div>
+</div>
+<div class="counter" id="instagram-count">0 کلیک</div>
+</a>
+
+<a href="https://wa.me/9647515372521"
+class="link-button" target="_blank" rel="noopener"
+onclick="countClick('whatsapp')">
+<div class="link-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
+<div class="link-text">
+<div class="link-title">WhatsApp</div>
+<div class="link-subtitle">+964 751 537 2521</div>
+</div>
+<div class="counter" id="whatsapp-count">0 کلیک</div>
+</a>
+
+</div>
+</div>
+
+<script>
+function toggleMode(){
+document.body.classList.toggle("light");
+if(document.body.classList.contains("light")){
+document.body.style.background="linear-gradient(135deg,#667eea,#764ba2)";
+}else{
+document.body.style.background="linear-gradient(135deg,#1e293b,#0f172a)";
+}
+}
+
+function countClick(platform){
+let count=localStorage.getItem(platform)||0;
+count++;
+localStorage.setItem(platform,count);
+document.getElementById(platform+"-count").innerText=count+" کلیک";
+}
+
+window.onload=function(){
+["tiktok","facebook","instagram","whatsapp"].forEach(function(p){
+let count=localStorage.getItem(p)||0;
+document.getElementById(p+"-count").innerText=count+" کلیک";
+});
+}
+</script>
+
+</body>
+</html>
